@@ -32,7 +32,8 @@ def read_email_from_gmail(mycredentials, mysettings, myparser, istestmode):
                 break
         return listofuser
     except imaplib.IMAP4.error:
-        print(imaplib.IMAP4.error)
+        print("Connection to server failed")
+        exit(0)
 
 
 if __name__ == '__main__':

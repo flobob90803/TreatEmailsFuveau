@@ -1,5 +1,5 @@
 class Credentials:
 
     def __init__(self):
-        self.myemail = "florent.sarat@gmail.com"
+        self.myemail = "user@email.com"
         self.mypwd = "tochange"
