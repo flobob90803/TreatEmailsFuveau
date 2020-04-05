@@ -15,7 +15,7 @@ def read_email_from_gmail(mycredentials, mysettings, myparser, istestmode):
         mail.login(mycredentials.myemail, mycredentials.mypwd)
         mail.select('inbox')
 
-        type, data = mail.search(None, 'FROM', '"flobobca@gmail.com"')
+        type, data = mail.search(None, 'FROM', '"postmaster@fuveauentraidecovid.fr"')
         id_list = reversed(data[0].split())
 
         for num in id_list:
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     credentials = Credentials()
     settings = Settings()
     parser = EmailParser()
-    testmode = True
+    testmode = False
     listOfUserToTreat = read_email_from_gmail(credentials, settings, parser, testmode)
     if len(listOfUserToTreat) > 0:
         mydatabase = Database(listOfUserToTreat)
