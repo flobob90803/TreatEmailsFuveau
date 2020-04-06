@@ -30,7 +30,7 @@ class Database:
                 os.mkdir(self.databaselocation)
             except OSError:
                 print("Creation of the directory %s failed" % path)
-                exit(0)
+                exit(1)
             else:
                 print("Successfully created the directory %s " % path)
         self.conn = self.create_connection(self.databaselocation + '\\' + self.databasename)
@@ -57,7 +57,7 @@ class Database:
                 print("User created: " + user.name)
             except sqlite3.OperationalError as e:
                 print(e)
-                exit(0)
+                exit(1)
 
     def checkifuserexist(self, user):
         try:
@@ -69,7 +69,7 @@ class Database:
                 return True
         except sqlite3.OperationalError as e:
             print(e)
-            exit(0)
+            exit(1)
 
     def create_connection(self, db):
         conn = None
@@ -78,7 +78,7 @@ class Database:
             return conn
         except sqlite3.OperationalError as e:
             print(e)
-            exit(0)
+            exit(1)
         return conn
 
     def createusertable(self):
@@ -86,7 +86,7 @@ class Database:
             self.cursor.execute(self.createtablequery)
         except sqlite3.OperationalError as e:
             print(e)
-            exit(0)
+            exit(1)
 
     def closedb(self):
         self.conn.close()

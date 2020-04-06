@@ -52,8 +52,8 @@ class EmailParser:
                 result = True
             else:
                 print("Don't know how to display {}".format(msgtoparse.get_content_type()))
-                sys.exit()
+                sys.exit(1)
         else:
             print("Don't know how to display {}".format(msgtoparse.get_content_type()))
-            sys.exit()
+            sys.exit(1)
         return result, myuser
