@@ -23,6 +23,7 @@ class Database:
     databaselocation = "data"
 
 
+
     def __init__(self, listofuser):
         if not path.exists(self.databaselocation):
             try:
