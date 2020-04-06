@@ -1,5 +1,6 @@
 import sqlite3
-
+import os.path
+from os import path
 
 class Database:
 
@@ -19,10 +20,19 @@ class Database:
                         )
                         """
     databasename = "users.db"
-    databaselocation = "data/"
+    databaselocation = "data"
+
 
     def __init__(self, listofuser):
-        self.conn = self.create_connection(self.databaselocation + self.databasename)
+        if not path.exists(self.databaselocation):
+            try:
+                os.mkdir(self.databaselocation)
+            except OSError:
+                print("Creation of the directory %s failed" % path)
+                exit(0)
+            else:
+                print("Successfully created the directory %s " % path)
+        self.conn = self.create_connection(self.databaselocation + '\\' + self.databasename)
         self.cursor = self.conn.cursor()
         self.listOfUser = listofuser
         if self.conn is not None:
@@ -46,6 +56,7 @@ class Database:
                 print("User created: " + user.name)
             except sqlite3.OperationalError as e:
                 print(e)
+                exit(0)
 
     def checkifuserexist(self, user):
         try:
@@ -57,6 +68,7 @@ class Database:
                 return True
         except sqlite3.OperationalError as e:
             print(e)
+            exit(0)
 
     def create_connection(self, db):
         conn = None
@@ -65,6 +77,7 @@ class Database:
             return conn
         except sqlite3.OperationalError as e:
             print(e)
+            exit(0)
         return conn
 
     def createusertable(self):
@@ -72,6 +85,7 @@ class Database:
             self.cursor.execute(self.createtablequery)
         except sqlite3.OperationalError as e:
             print(e)
+            exit(0)
 
     def closedb(self):
         self.conn.close()
