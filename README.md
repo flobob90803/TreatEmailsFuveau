@@ -1,5 +1,7 @@
 # Treat Emails Fuveau
 
+Automated treatment for CIQ
+
 1. Clone project
 2. Setup credentials in credentials.py
 3. Define SMPT server in settings.py
